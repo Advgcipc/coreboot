@@ -34,3 +34,6 @@
 	url = ../intel-microcode.git
 	update = none
 	ignore = dirty
+[submodule "ffs"]
+	path = ffs
+	url = ../ffs.git
