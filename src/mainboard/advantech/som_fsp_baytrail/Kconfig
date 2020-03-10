@@ -1,0 +1,99 @@
+##
+## This file is part of the coreboot project.
+##
+## Copyright (C) 2013-2014 Sage Electronic Engineering, LLC.
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; version 2 of the License.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+
+if BOARD_ADVANTECH_SOM_3567 || BOARD_ADVANTECH_SOM_7567
+
+config BOARD_SPECIFIC_OPTIONS
+	def_bool y
+	select SOC_INTEL_FSP_BAYTRAIL
+##	select BOARD_ROMSIZE_KB_2048
+	select BOARD_ROMSIZE_KB_8192
+	select HAVE_ACPI_TABLES
+	select HAVE_OPTION_TABLE
+	select ENABLE_BUILTIN_COM1 if FSP_PACKAGE_DEFAULT
+	select HAVE_FSP_BIN if FSP_PACKAGE_DEFAULT
+  select HAVE_INTEL_FIRMWARE
+  select HAVE_IFD_BIN
+  select HAVE_ME_BIN
+  
+config MAINBOARD_DIR
+	string
+	default "advantech/som_fsp_baytrail"
+
+config MAINBOARD_PART_NUMBER
+	string
+	default "Advantech SOM-3567" if BOARD_ADVANTECH_SOM_3567
+	default "Advantech SOM-7567"
+
+config MAX_CPUS
+	int
+	default 16
+
+config FSP_FILE
+	string
+	default "3rdparty/fsp/BayTrailFspBinPkg/FspBin/BAYTRAIL_FSP.fd" if BOARD_ADVANTECH_SOM_3567
+	default "3rdparty/fsp/BayTrailFspBinPkg/FspBin/BAYTRAIL_FSP.fd"
+
+config CBFS_SIZE
+	hex
+	default 0x00200000
+
+config ENABLE_FSP_FAST_BOOT
+	bool
+	depends on HAVE_FSP_BIN
+	default y
+
+config VIRTUAL_ROM_SIZE
+	hex
+	depends on ENABLE_FSP_FAST_BOOT
+	default 0x800000
+
+config FSP_PACKAGE_DEFAULT
+	bool "Configure defaults for the Intel FSP package"
+	default y
+
+config VGA_BIOS
+	bool
+	default y if FSP_PACKAGE_DEFAULT
+
+config VGA_BIOS_FILE
+	string
+	default "src/mainboard/$(MAINBOARDDIR)/vbios/vga3652.dat" if VGA_BIOS
+
+config CPU_MICROCODE_HEADER_FILES
+	string
+	default "src/mainboard/$(MAINBOARDDIR)/microcode/M0130673325.h src/mainboard/$(MAINBOARDDIR)/microcode/M0130679905.h src/mainboard/$(MAINBOARDDIR)/microcode/M013067222D.h"
+
+
+config HAVE_INTEL_FIRMWARE
+	bool "Configure defaults Intel Firmware Descriptor"
+	help
+	  Chipset uses the Intel Firmware Descriptor to describe the
+	  layout of the SPI ROM chip.
+
+
+config IFD_BIN_PATH
+	string
+	depends on HAVE_IFD_BIN
+	default "src/mainboard/$(MAINBOARDDIR)/me/descriptor.bin"
+
+config ME_BIN_PATH
+	string
+	depends on HAVE_ME_BIN
+	default "src/mainboard/$(MAINBOARDDIR)/me/me.bin"
+ 
+
+
+endif # BOARD_ADVANTECH_SOM_3567 || BOARD_ADVANTECH_SOM_7567

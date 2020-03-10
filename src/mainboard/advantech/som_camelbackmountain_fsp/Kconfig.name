@@ -1,0 +1,2 @@
+config BOARD_ADVANTECH_SOM_5992
+	bool "SOM-5992"

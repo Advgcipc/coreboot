@@ -1,0 +1,65 @@
+if BOARD_ADVANTECH_SOM_5992
+
+config BOARD_SPECIFIC_OPTIONS
+	def_bool y
+	select SOC_INTEL_FSP_BROADWELL_DE
+	select BOARD_ROMSIZE_KB_16384
+	select HAVE_ACPI_TABLES
+	select HAVE_OPTION_TABLE
+	select INTEGRATED_UART if FSP_PACKAGE_DEFAULT
+	select HAVE_FSP_BIN if FSP_PACKAGE_DEFAULT
+	select SERIRQ_CONTINUOUS_MODE
+	select MAINBOARD_USES_IFD_GBE_REGION
+  select HAVE_IFD_BIN
+  select HAVE_ME_BIN
+
+config MAINBOARD_DIR
+	string
+	default "advantech/som_camelbackmountain_fsp"
+
+config MAINBOARD_PART_NUMBER
+	string
+	default "SOM-5992"
+
+config IRQ_SLOT_COUNT
+	int
+	default 18
+
+config CBFS_SIZE
+	hex
+	default 0x00200000
+
+config VIRTUAL_ROM_SIZE
+	hex
+	default 0x1000000
+
+config DRIVERS_UART_8250IO
+	def_bool n
+
+config FSP_PACKAGE_DEFAULT
+	bool "Configure defaults for the Intel FSP package"
+	default n
+
+config VGA_BIOS
+	bool
+	default y
+
+config VGA_BIOS_FILE
+	string
+	default "src/mainboard/$(MAINBOARDDIR)/vbios/uefi_2400_396.rom"  if VGA_BIOS
+
+config VGA_BIOS_ID
+	string
+	default "1a03,2000"
+ 
+config IFD_BIN_PATH
+	string
+	depends on HAVE_IFD_BIN
+	default "src/mainboard/$(MAINBOARDDIR)/me/descriptor.bin"
+
+config ME_BIN_PATH
+	string
+	depends on HAVE_ME_BIN
+	default "src/mainboard/$(MAINBOARDDIR)/me/me.bin"
+
+endif # BOARD_ADVANTECH_SOM_5992

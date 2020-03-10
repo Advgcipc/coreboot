@@ -1,0 +1,5 @@
+config BOARD_ADVANTECH_SOM_3567
+	bool "SOM-3567"
+
+config BOARD_ADVANTECH_SOM_7567
+	bool "SOM-7567"
