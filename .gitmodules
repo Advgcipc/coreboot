@@ -1,13 +1,13 @@
 [submodule "vboot"]
 	path = 3rdparty/vboot
-	url = ../vboot.git
+	url = https://github.com/coreboot/vboot.git
 [submodule "3rdparty/fsp"]
 	path = 3rdparty/fsp
-	url = ../fsp.git
+	url = https://github.com/coreboot/fsp.git
 	update = none
 	ignore = dirty
 [submodule "intel-microcode"]
 	path = 3rdparty/intel-microcode
-	url = ../intel-microcode.git
+	url = https://github.com/coreboot/intel-microcode.git
 	update = none
 	ignore = dirty
