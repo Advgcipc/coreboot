@@ -87,12 +87,12 @@ config HAVE_INTEL_FIRMWARE
 config IFD_BIN_PATH
 	string
 	depends on HAVE_IFD_BIN
-	default "src/mainboard/$(MAINBOARDDIR)/me/descriptor.bin"
+	default "src/mainboard/$(MAINBOARDDIR)/me/descriptorbin"
 
 config ME_BIN_PATH
 	string
 	depends on HAVE_ME_BIN
-	default "src/mainboard/$(MAINBOARDDIR)/me/me.bin"
+	default "src/mainboard/$(MAINBOARDDIR)/me/mebin"
  
 
 

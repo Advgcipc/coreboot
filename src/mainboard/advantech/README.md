@@ -18,7 +18,7 @@ Build Coreboot
 Download CoreBoot Source
 ------------------------
 
-git clone https://github.com/coreboot/coreboot.git
+git clone https://github.com/Advgcipc/coreboot.git
 cd coreboot
 
 
@@ -31,7 +31,8 @@ git submodule update --init --checkout
 Compile relalted build tools
 ----------------------------
 
-make crossgcc CPUS=16
+make crossgcc-i386 CPUS=16
+make crossgcc-x64 CPUS=16
   * It spends long time to build. Please waiting.
 
 
