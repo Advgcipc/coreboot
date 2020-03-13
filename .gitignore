@@ -70,7 +70,7 @@ tags
 
 # Cross-compile toolkits
 xgcc/
-tarballs/
+# tarballs/
 
 #
 # KDE editors create lots of backup files whenever
